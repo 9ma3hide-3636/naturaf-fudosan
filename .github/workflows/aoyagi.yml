@@ -34,10 +34,17 @@ jobs:
           NOTIFY_TO:          ${{ secrets.NOTIFY_TO }}
         run: python agents/aoyagi.py
 
-      - name: レポートをコミット＆プッシュ
+      - name: ダッシュボード更新
+        env:
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_TO:          ${{ secrets.NOTIFY_TO }}
+        run: python update_dashboard.py
+
+      - name: レポート＆ダッシュボードをコミット＆プッシュ
         run: |
           git config user.email "bot@naturaf.jp"
           git config user.name  "NATURAF Bot"
-          git add properties/
-          git diff --staged --quiet || git commit -m "[青柳] 出口戦略レポート追加"
+          git add properties/ index.html
+          git diff --staged --quiet || git commit -m "[青柳] 出口戦略レポート＋ダッシュボード更新"
           git push
