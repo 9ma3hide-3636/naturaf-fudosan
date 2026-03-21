@@ -81,8 +81,8 @@ def _scrape_list_page(pref_code: str, building_type_code: str, page: int = 1) ->
     params = {
         "pref_cd[]": pref_code,
         "property_type_cd[]": building_type_code,
-        "price_min": 6000,
-        "price_max": 8000,
+        "price_min": 4000,
+        "price_max": 10000,
         "walk": 10,
         "page": page,
         "sort": "new",

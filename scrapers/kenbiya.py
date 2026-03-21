@@ -71,8 +71,8 @@ def _scrape_list_page(pref_key: str, page: int = 1) -> List[Dict]:
     """健美家の物件一覧ページをスクレイプ"""
     url = f"{BASE_URL}/ar/ls/{pref_key}-apartment/"
     params = {
-        "sell_price_min": 6000,
-        "sell_price_max": 8000,
+        "sell_price_min": 4000,
+        "sell_price_max": 10000,
         "walk_min": 10,
         "pg": page,
         "sort": "new",
