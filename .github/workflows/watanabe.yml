@@ -1,0 +1,43 @@
+name: 渡邉さん（融資・CF分析）
+
+on:
+  push:
+    paths:
+      - "properties/*/property.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    name: 融資・CF分析
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: 渡邉さん起動
+        env:
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_TO:          ${{ secrets.NOTIFY_TO }}
+        run: python agents/watanabe.py
+
+      - name: レポートをコミット＆プッシュ
+        run: |
+          git config user.email "bot@naturaf.jp"
+          git config user.name  "NATURAF Bot"
+          git add properties/
+          git diff --staged --quiet || git commit -m "[渡邉] CF・融資分析レポート追加"
+          git push

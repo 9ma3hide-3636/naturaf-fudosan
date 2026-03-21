@@ -4,40 +4,41 @@ on:
   schedule:
     # UTC 0〜15時（日本時間 9〜24時）に1時間ごと実行
     - cron: "0 0-15 * * *"
-  workflow_dispatch:  # 手動実行も可能
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   hunt:
-    name: 物件スキャン & LINE通知
+    name: 物件スキャン & 保存
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
-      - name: リポジトリをチェックアウト
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Python 3.11 セットアップ
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
 
-      - name: 依存パッケージインストール
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
       - name: データベースをキャッシュから復元
         uses: actions/cache@v4
         with:
           path: database/properties.db
           key: properties-db-${{ github.run_id }}
-          restore-keys: |
-            properties-db-
+          restore-keys: properties-db-
 
-      - name: 竹越さん起動（スキャン & 通知）
+      - name: 竹越さん起動
         env:
-          GMAIL_ADDRESS:    ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          NOTIFY_TO:        ${{ secrets.NOTIFY_TO }}
+          NOTIFY_TO:          ${{ secrets.NOTIFY_TO }}
         run: python main.py
 
       - name: データベースをキャッシュへ保存
