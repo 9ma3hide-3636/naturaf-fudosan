@@ -31,6 +31,7 @@ body { background: #0a0e1a; color: #e0e6f0; font-family: 'Hiragino Sans', sans-s
 .status-ok { background: #0d3020; color: #4adb9a; border: 1px solid #1a5030; }
 .status-wait { background: #2a1a05; color: #f0a030; border: 1px solid #4a3010; }
 .status-ng { background: #2a0d0d; color: #f05050; border: 1px solid #4a1a1a; }
+.status-stop { background: #1a1a2a; color: #8080b0; border: 1px solid #2a2a4a; }
 .roadmap-item { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; }
 .year-badge { background: #1a2744; color: #4a9eff; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; white-space: nowrap; border: 1px solid #2a4a8a; }
 .roadmap-desc { font-size: 13px; color: #c0d0e0; line-height: 1.5; }
@@ -46,12 +47,53 @@ body { background: #0a0e1a; color: #e0e6f0; font-family: 'Hiragino Sans', sans-s
 .monitor-item:last-child { border-bottom: none; }
 .monitor-badge { padding: 3px 10px; border-radius: 10px; font-size: 11px; }
 .active { background: #0d3020; color: #4adb9a; border: 1px solid #1a5030; }
+.stopped { background: #1a1a2a; color: #8080b0; border: 1px solid #2a2a4a; }
 .mission-box { background: #0a1220; border: 1px solid #1e3550; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
 .mission-label { font-size: 11px; color: #4a7fa5; margin-bottom: 6px; }
 .mission-text { font-size: 14px; color: #e0e6f0; line-height: 1.6; }
 .last-update { text-align: center; padding: 16px; color: #3a5a7a; font-size: 11px; }
 .pulse { animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+.submit-section { padding: 0 24px 24px; }
+.submit-card { background: #0d1625; border: 1px solid #2a4a7a; border-radius: 12px; padding: 24px; }
+.submit-title { font-size: 16px; color: #fff; font-weight: bold; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.submit-desc { font-size: 12px; color: #5b8fc9; margin-bottom: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label { font-size: 11px; color: #4a7fa5; }
+.form-input { background: #0a1220; border: 1px solid #1e3550; border-radius: 8px; padding: 10px 12px; color: #e0e6f0; font-size: 13px; outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: #4a9eff; }
+.form-input::placeholder { color: #2a4a6a; }
+.submit-btn { background: linear-gradient(135deg, #1a4a8a, #2a6aaa); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.submit-btn:hover { background: linear-gradient(135deg, #2a5a9a, #3a7aba); transform: translateY(-1px); }
+.submit-btn:disabled { background: #1a2a3a; color: #3a5a7a; cursor: not-allowed; transform: none; }
+.result-section { padding: 0 24px 24px; display: none; }
+.result-card { background: #0d1625; border: 1px solid #1e3550; border-radius: 12px; padding: 24px; }
+.result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.result-title { font-size: 15px; color: #fff; font-weight: bold; }
+.score-badge { font-size: 28px; font-weight: bold; padding: 8px 20px; border-radius: 10px; }
+.score-high { background: #0d3020; color: #4adb9a; border: 1px solid #1a5030; }
+.score-mid { background: #2a2a05; color: #f0d030; border: 1px solid #4a4010; }
+.score-low { background: #2a0d0d; color: #f05050; border: 1px solid #4a1a1a; }
+.agent-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.agent-card { background: #0a1220; border: 1px solid #1a3050; border-radius: 10px; padding: 16px; }
+.agent-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.agent-emoji { font-size: 20px; }
+.agent-name { font-size: 13px; font-weight: bold; color: #c0d0e0; }
+.agent-content { font-size: 12px; color: #8090a0; line-height: 1.7; white-space: pre-wrap; }
+.loading-dots { display: inline-flex; gap: 4px; }
+.loading-dots span { width: 6px; height: 6px; border-radius: 50%; background: #4a9eff; animation: bounce 1.2s infinite; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+.verdict-box { margin-top: 16px; padding: 16px; border-radius: 10px; text-align: center; }
+.verdict-go { background: #0d3020; border: 1px solid #1a5030; }
+.verdict-consider { background: #2a2a05; border: 1px solid #4a4010; }
+.verdict-pass { background: #2a0d0d; border: 1px solid #4a1a1a; }
+.verdict-text { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
+.verdict-sub { font-size: 12px; color: #7090b0; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -91,18 +133,19 @@ body { background: #0a0e1a; color: #e0e6f0; font-family: 'Hiragino Sans', sans-s
     <div class="roadmap-item"><div class="year-badge current-year">2026</div><div><div class="roadmap-desc">2棟購入（Hope＋Peace）<br>谷前さんスキーム実行</div><div class="roadmap-check">← 今ここ</div></div></div>
     <div class="roadmap-item"><div class="year-badge">2027</div><div class="roadmap-desc">マイホーム購入<br>7,000〜9,000万円</div></div>
     <div class="roadmap-item"><div class="year-badge">2028</div><div class="roadmap-desc">3棟目購入</div></div>
-    <div class="roadmap-item"><div class="year-badge">2032</div><div class="roadmap-desc">資産20億｜月CF 291万円<br>（42歳・10年後）</div></div>
-    <div class="roadmap-item"><div class="year-badge">2037</div><div class="roadmap-desc">資産30億｜月CF 438万円<br>（47歳・15年後）</div></div>
+    <div class="roadmap-item"><div class="year-badge">2036</div><div class="roadmap-desc">資産20億｜月CF 291万円<br>（42歳・10年後）</div></div>
+    <div class="roadmap-item"><div class="year-badge">2041</div><div class="roadmap-desc">資産30億｜月CF 438万円<br>（47歳・15年後）</div></div>
   </div>
   <div class="card">
     <div class="card-title"><span>📡</span> 物件監視システム</div>
-    <div class="monitor-item"><span>楽待 監視</span><span class="monitor-badge active">● 稼働中</span></div>
-    <div class="monitor-item"><span>健美家 監視</span><span class="monitor-badge active">● 稼働中</span></div>
-    <div class="monitor-item"><span>Gmail通知</span><span class="monitor-badge active">● 有効</span></div>
-    <div class="monitor-item"><span>監視間隔</span><span style="font-size:13px;color:#4a9eff">1時間ごと</span></div>
+    <div class="monitor-item"><span>楽待 自動監視</span><span class="monitor-badge stopped">■ 停止中</span></div>
+    <div class="monitor-item"><span>健美家 自動監視</span><span class="monitor-badge stopped">■ 停止中</span></div>
+    <div class="monitor-item"><span>Gmail自動通知</span><span class="monitor-badge stopped">■ 停止中</span></div>
     <div style="margin-top:14px;padding:12px;background:#0a1220;border-radius:8px;font-size:12px;color:#5b8fc9;">
-      <div style="margin-bottom:6px;color:#c0d0e0">📋 監視条件</div>
-      価格：4,000〜10,000万円<br>エリア：埼玉県・東京都<br>駅徒歩：10分以内（最大15分）<br>利回り：木造6.5% / 軽鉄6.2% / RC5.8%以上<br>室数：6室以上
+      <div style="margin-bottom:6px;color:#f0a030">⚠️ 運用方針変更</div>
+      楽待のBot対策により自動監視を停止。<br>
+      矢野さんが楽待で物件を発見し、<br>
+      下の「物件投げ込みフォーム」でAIチームに分析依頼する方式に変更。
     </div>
   </div>
   <div class="card">
@@ -112,15 +155,154 @@ body { background: #0a0e1a; color: #e0e6f0; font-family: 'Hiragino Sans', sans-s
     <div class="mission-box"><div class="mission-label">Value</div><div class="mission-text">感謝・自分が源・ALL WIN</div></div>
   </div>
 </div>
-
-
-<!-- PROPERTY_CARDS_START -->
-<div style="text-align:center;padding:40px 24px;color:#2a4a6a;font-size:14px;">
-  物件スキャン待機中... 次回スキャンまでしばらくお待ちください。
+<div class="submit-section">
+  <div class="submit-card">
+    <div class="submit-title">🏠 物件をAIチームに分析依頼する</div>
+    <div class="submit-desc">楽待で気になった物件の情報を入力すると、AIチームが並列で分析してスコアリングします</div>
+    <div class="form-row">
+      <div class="form-group full">
+        <div class="form-label">物件URL（楽待・健美家など）※後で自分で開くためのメモ</div>
+        <input class="form-input" id="propUrl" type="text" placeholder="https://www.rakumachi.jp/syuuekibukken/..." />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">価格（万円）</div>
+        <input class="form-input" id="propPrice" type="text" placeholder="例：6500" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">表面利回り（%）</div>
+        <input class="form-input" id="propYield" type="text" placeholder="例：7.2" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">所在地</div>
+        <input class="form-input" id="propLocation" type="text" placeholder="例：さいたま市浦和区" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">構造</div>
+        <input class="form-input" id="propStructure" type="text" placeholder="例：木造・RC・軽量鉄骨" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">築年数</div>
+        <input class="form-input" id="propAge" type="text" placeholder="例：築25年" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">室数</div>
+        <input class="form-input" id="propRooms" type="text" placeholder="例：8室" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <div class="form-label">その他メモ（駅距離・間取り・気になる点など）</div>
+        <input class="form-input" id="propNote" type="text" placeholder="例：最寄り駅徒歩8分・1K×8室・外壁塗装必要そう" />
+      </div>
+    </div>
+    <button class="submit-btn" id="submitBtn" onclick="analyzeProperty()">
+      🔍 AIチームに分析依頼する
+    </button>
+  </div>
 </div>
-<!-- PROPERTY_CARDS_END -->
-
+<div class="result-section" id="resultSection">
+  <div class="result-card">
+    <div class="result-header">
+      <div class="result-title">📊 AIチーム分析結果</div>
+      <div class="score-badge" id="scoreBadge">—</div>
+    </div>
+    <div class="agent-results" id="agentResults"></div>
+    <div class="verdict-box" id="verdictBox" style="display:none">
+      <div class="verdict-text" id="verdictText"></div>
+      <div class="verdict-sub" id="verdictSub"></div>
+    </div>
+  </div>
+</div>
 <div class="last-update" id="t"></div>
 <script>document.getElementById('t').textContent='最終更新：'+new Date().toLocaleString('ja-JP');</script>
+<script>
+const AGENTS = [
+  { emoji: '👑', name: '高橋代表', role: '司令塔・スコアリング', prompt: `あなたは不動産投資の専門家・高橋代表です。資産100億円を持つIVPの代表として、以下の物件を100点満点でスコアリングしてください。\n\n評価基準：\n- 相場より安く買えるか（割安度）\n- CF（キャッシュフロー）20%以上見込めるか\n- 100万人大都市50km圏内・人口増加エリアか\n- 単身向け1K/1R/1LDKか\n- 自己資金10〜30%で購入可能か\n\n最後に必ず「総合スコア：XX点」と記載し、80点以上なら「→銀行提案推奨」、60-79点なら「→要検討」、60点未満なら「→見送り推奨」と記載してください。回答は日本語で300字以内で簡潔に。` },
+  { emoji: '📊', name: '竹越さん', role: '相場分析・割安検知', prompt: `あなたは元SoftBankエンジニアで不動産投資家の竹越さんです。資産20億円。データと論理で割安物件を見抜く専門家として、以下の物件の相場分析をしてください。\n\n分析ポイント：\n- 提示利回りは相場と比べて高いか低いか\n- エリアの需要・供給バランス\n- 価格の割安・割高判定\n- 注意すべきリスク\n\n回答は日本語で250字以内で簡潔に。` },
+  { emoji: '💰', name: '渡邉さん', role: '融資・収支計算', prompt: `あなたは現役銀行員で5棟保有の不動産投資家・渡邉さんです。銀行内部審査基準を熟知した融資専門家として、以下の物件の収支シミュレーションと融資可能性を分析してください。\n\n分析ポイント：\n- 想定月間CF（家賃収入 - ローン返済 - 諸費用）\n- 融資可能性の見通し（埼玉縣信金5000万2.625%を前提）\n- 積算価格の概算\n- 返済比率\n\n数字を使って具体的に。回答は日本語で250字以内で簡潔に。` },
+  { emoji: '📋', name: '金子コーチ', role: 'リスク・戦略', prompt: `あなたは鍼灸院2院を経営しながら資産14億円を築いた不動産投資家・金子コーチです。治療院経営者ならではの視点で、以下の物件のリスクと管理戦略を分析してください。\n\n分析ポイント：\n- 主なリスク（空室・修繕・地域特性）\n- 管理会社選定のポイント\n- リーシング戦略\n- 治療院経営者として購入すべきかのアドバイス\n\n回答は日本語で250字以内で簡潔に。` },
+  { emoji: '🔭', name: '青柳さん', role: '出口戦略', prompt: `あなたは元銀行員32歳で資産20億円の不動産投資家・青柳さんです。出口戦略の専門家として、以下の物件の売却・資産回転戦略を分析してください。\n\n分析ポイント：\n- 5年以内売却 vs 長期保有の比較\n- 5年超保有で譲渡税20%になる点を考慮した最適保有期間\n- 売却時の想定価格・キャピタルゲイン\n- 次の物件への資産回転シミュレーション\n\n回答は日本語で250字以内で簡潔に。` }
+];
+function buildPropertyText() {
+  return `【物件情報】\nURL：${document.getElementById('propUrl').value||'未入力'}\n価格：${document.getElementById('propPrice').value?document.getElementById('propPrice').value+'万円':'未入力'}\n表面利回り：${document.getElementById('propYield').value?document.getElementById('propYield').value+'%':'未入力'}\n所在地：${document.getElementById('propLocation').value||'未入力'}\n構造：${document.getElementById('propStructure').value||'未入力'}\n築年数：${document.getElementById('propAge').value||'未入力'}\n室数：${document.getElementById('propRooms').value||'未入力'}\n備考：${document.getElementById('propNote').value||'なし'}`;
+}
+async function callClaude(systemPrompt, propertyText) {
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, system: systemPrompt, messages: [{ role: "user", content: propertyText }] })
+  });
+  const data = await response.json();
+  return data.content?.[0]?.text || 'エラーが発生しました';
+}
+function extractScore(text) {
+  const match = text.match(/総合スコア[：:]\s*(\d+)/);
+  return match ? parseInt(match[1]) : null;
+}
+async function analyzeProperty() {
+  const btn = document.getElementById('submitBtn');
+  const resultSection = document.getElementById('resultSection');
+  const agentResults = document.getElementById('agentResults');
+  const scoreBadge = document.getElementById('scoreBadge');
+  const verdictBox = document.getElementById('verdictBox');
+  btn.disabled = true;
+  btn.innerHTML = '🔍 分析中...';
+  const propertyText = buildPropertyText();
+  resultSection.style.display = 'block';
+  resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  agentResults.innerHTML = '';
+  scoreBadge.textContent = '分析中';
+  scoreBadge.className = 'score-badge';
+  scoreBadge.style.background = '#1a2a3a';
+  scoreBadge.style.color = '#5b8fc9';
+  verdictBox.style.display = 'none';
+  AGENTS.forEach((agent, i) => {
+    const card = document.createElement('div');
+    card.className = 'agent-card';
+    card.id = `agent-${i}`;
+    card.innerHTML = `<div class="agent-header"><div class="agent-emoji">${agent.emoji}</div><div><div class="agent-name">${agent.name}</div><div style="font-size:10px;color:#3a6a8a">${agent.role}</div></div></div><div class="agent-content" id="agent-content-${i}"><div class="loading-dots"><span></span><span></span><span></span></div> 分析中...</div>`;
+    agentResults.appendChild(card);
+  });
+  let totalScore = null;
+  const promises = AGENTS.map(async (agent, i) => {
+    try {
+      const result = await callClaude(agent.prompt, propertyText);
+      const contentEl = document.getElementById(`agent-content-${i}`);
+      if (contentEl) contentEl.textContent = result;
+      if (i === 0) { totalScore = extractScore(result); updateScore(totalScore); }
+      return result;
+    } catch (e) {
+      const contentEl = document.getElementById(`agent-content-${i}`);
+      if (contentEl) contentEl.textContent = '分析中にエラーが発生しました。';
+    }
+  });
+  await Promise.all(promises);
+  if (totalScore !== null) { updateScore(totalScore); showVerdict(totalScore); }
+  btn.disabled = false;
+  btn.innerHTML = '🔍 AIチームに分析依頼する';
+}
+function updateScore(score) {
+  const badge = document.getElementById('scoreBadge');
+  if (!score) return;
+  badge.textContent = score + '点';
+  badge.className = 'score-badge';
+  if (score >= 80) badge.classList.add('score-high');
+  else if (score >= 60) badge.classList.add('score-mid');
+  else badge.classList.add('score-low');
+}
+function showVerdict(score) {
+  const verdictBox = document.getElementById('verdictBox');
+  const verdictText = document.getElementById('verdictText');
+  const verdictSub = document.getElementById('verdictSub');
+  verdictBox.style.display = 'block';
+  if (score >= 80) { verdictBox.className = 'verdict-box verdict-go'; verdictText.style.color = '#4adb9a'; verdictText.textContent = '✅ 銀行提案推奨'; verdictSub.textContent = `スコア${score}点 — 埼玉縣信金・りそなへの提案を検討してください`; }
+  else if (score >= 60) { verdictBox.className = 'verdict-box verdict-consider'; verdictText.style.color = '#f0d030'; verdictText.textContent = '⚠️ 要検討'; verdictSub.textContent = `スコア${score}点 — 条件交渉や詳細調査を行った上で再判断してください`; }
+  else { verdictBox.className = 'verdict-box verdict-pass'; verdictText.style.color = '#f05050'; verdictText.textContent = '❌ 見送り推奨'; verdictSub.textContent = `スコア${score}点 — 条件が基準に満たないため、次の物件を探しましょう`; }
+}
+</script>
 </body>
 </html>
